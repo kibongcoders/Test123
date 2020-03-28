@@ -40,5 +40,9 @@ public class HomeController {
 	public String vue() {
 		return "jsp/vue";
 	}
+	@RequestMapping("/vue2")
+	public String vue2() {
+		return "jsp/vue2";
+	}
 	
 }

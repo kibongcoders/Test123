@@ -33,6 +33,27 @@
   	</p>
   	<p>{{ answer }}</p>
 </div>
+
+	<div id=style>
+		<p v-bind:style="styleObject">Hello</p>
+	</div>
+	<div id="key-example">
+	<template v-if="loginType === 'username'">
+  		<label>사용자 이름</label>
+  	<input placeholder="사용자 이름을 입력하세요" key="username-input">
+	</template>
+	<template v-else>
+  	<label>이메일</label>
+  	<input placeholder="이메일 주소를 입력하세요" key="email-input">
+	</template>
+	<button v-on:click="toggleLoginType"></button>
+	</div>
+	
+	<div id="examfor">
+		<div v-for="(name, value, index) in object">
+  {{ index+1 }}. {{ value }}: {{ name }}
+</div>
+	</div>
 	
 </body>
 <script type="text/javascript">
@@ -143,5 +164,39 @@ var watchExampleVM = new Vue({
 	});
 
 demo2.fullName = 'Bong Bong'
+//스타일
+var style = new Vue ({
+	el : "#style",
+	data : {
+		styleObject : {
+			color : "red",
+			'font-size' : "25px"
+		}
+	}
+});
+
+
+new Vue({
+  el: '#key-example',
+  data: {
+    loginType: 'username'
+  },
+  methods: {
+    toggleLoginType: function () {
+      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    }
+  }
+});
+
+new Vue({
+	  el: '#examfor',
+	  data: {
+	    object: {
+	      title: 'How to do lists in Vue',
+	      author: 'Jane Doe',
+	      publishedAt: '2016-04-10'
+	    }
+	  }
+	});
 </script>
 </html>
